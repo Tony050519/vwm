@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robot Manipulation I2V Examples</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --panel: #171a21;
+    --panel-border: #272b35;
+    --text: #e8eaed;
+    --text-dim: #9aa1ad;
+    --accent: #5ee6c5;
+    --accent-dim: #2d6b5c;
+    --code-bg: #1d2129;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+  header {
+    padding: 48px 24px 28px;
+    text-align: center;
+    border-bottom: 1px solid var(--panel-border);
+  }
+  header h1 {
+    margin: 0 0 10px;
+    font-size: 1.8rem;
+    letter-spacing: -0.01em;
+  }
+  header p {
+    margin: 6px auto;
+    max-width: 680px;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+  }
+  header code {
+    background: var(--code-bg);
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 0.85em;
+  }
+  header a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--accent-dim);
+  }
+  header a:hover { border-bottom-style: solid; }
+
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 36px 24px 64px;
+    display: grid;
+    gap: 28px;
+  }
+
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 14px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .card .meta {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .card .index {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+  .card .prompt {
+    color: var(--text);
+    font-size: 0.98rem;
+  }
+
+  .media-block { display: flex; flex-direction: column; gap: 8px; }
+  .media-block .label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+  }
+  .media-block img,
+  .media-block video {
+    width: 100%;
+    border-radius: 10px;
+    background: #000;
+    display: block;
+    border: 1px solid var(--panel-border);
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+  }
+
+  @media (max-width: 720px) {
+    .card { grid-template-columns: 1fr; }
+  }
+
+  footer {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    padding: 20px 24px 48px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Image-to-Video Examples for Robot Manipulation</h1>
+  <p>
+    Generated with <strong>Wan 2.2 I2V (14B)</strong>, 4-step Lightning LoRA fast variant —
+    <a href="https://huggingface.co/spaces/zerogpu-aoti/wan2-2-fp8da-aoti-faster" target="_blank" rel="noopener">zerogpu-aoti/wan2-2-fp8da-aoti-faster</a>
+  </p>
+  <p>Each example pairs a source image with the generated video and the text prompt used.</p>
+</header>
+
+<main>
+
+  <section class="card">
+    <div class="meta">
+      <span class="index">1.</span>
+      <span class="prompt">A human hand reaches to the green handle on top of the machine, hold it, and pull it up.</span>
+    </div>
+    <div class="media-block">
+      <span class="label">Input Image</span>
+      <img src="examples/1.jpeg" alt="Input image 1 — green handle on machine">
+    </div>
+    <div class="media-block">
+      <span class="label">Generated Video</span>
+      <video src="examples/1.mp4" controls loop muted playsinline preload="metadata"></video>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="meta">
+      <span class="index">2.</span>
+      <span class="prompt">A human hand reaches out, uses index finger to press the plus button on the left, then retrieves the hand out of the scene.</span>
+    </div>
+    <div class="media-block">
+      <span class="label">Input Image</span>
+      <img src="examples/2.jpeg" alt="Input image 2 — plus button">
+    </div>
+    <div class="media-block">
+      <span class="label">Generated Video</span>
+      <video src="examples/2.mp4" controls loop muted playsinline preload="metadata"></video>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="meta">
+      <span class="index">3.</span>
+      <span class="prompt">A human right hand reaches out to the top open door on the left, holds the rim, closes the door half way, then pushes the outside and closes it fully.</span>
+    </div>
+    <div class="media-block">
+      <span class="label">Input Image</span>
+      <img src="examples/3.jpeg" alt="Input image 3 — open door on the left">
+    </div>
+    <div class="media-block">
+      <span class="label">Generated Video</span>
+      <video src="examples/3.mp4" controls loop muted playsinline preload="metadata"></video>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="meta">
+      <span class="index">4.</span>
+      <span class="prompt">A human hand reaches to the knob and twist it clockwise.</span>
+    </div>
+    <div class="media-block">
+      <span class="label">Input Image</span>
+      <img src="examples/4.jpeg" alt="Input image 4 — knob">
+    </div>
+    <div class="media-block">
+      <span class="label">Generated Video</span>
+      <video src="examples/4.mp4" controls loop muted playsinline preload="metadata"></video>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Click play on any video to view the generated manipulation sequence.
+</footer>
+
+</body>
+</html>
