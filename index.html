@@ -66,7 +66,7 @@
     border-radius: 14px;
     padding: 20px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
     align-items: start;
   }
@@ -97,7 +97,8 @@
     color: var(--text-dim);
   }
   .media-block img,
-  .media-block video {
+  .media-block video,
+  .media-block model-viewer {
     width: 100%;
     border-radius: 10px;
     background: #000;
@@ -105,6 +106,23 @@
     border: 1px solid var(--panel-border);
     aspect-ratio: 16 / 9;
     object-fit: contain;
+  }
+
+  .media-block model-viewer {
+    --poster-color: transparent;
+  }
+
+  .media-block .download-link {
+    align-self: flex-start;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.78rem;
+    border-bottom: 1px dashed var(--accent-dim);
+  }
+  .media-block .download-link:hover { border-bottom-style: solid; }
+
+  @media (max-width: 980px) {
+    .card { grid-template-columns: 1fr 1fr; }
   }
 
   @media (max-width: 720px) {
@@ -118,6 +136,7 @@
     padding: 20px 24px 48px;
   }
 </style>
+<script type="module" src="https://unpkg.com/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
 </head>
 <body>
 
@@ -127,7 +146,7 @@
     Generated with <strong>Wan 2.2 I2V (14B)</strong>, 4-step Lightning LoRA fast variant —
     <a href="https://huggingface.co/spaces/zerogpu-aoti/wan2-2-fp8da-aoti-faster" target="_blank" rel="noopener">zerogpu-aoti/wan2-2-fp8da-aoti-faster</a>
   </p>
-  <p>Each example pairs a source image with the generated video and the text prompt used.</p>
+  <p>Each example pairs a source image with the generated video, the text prompt used, and a 3D reconstruction of the scene from the input image.</p>
 </header>
 
 <main>
@@ -145,6 +164,11 @@
       <span class="label">Generated Video</span>
       <video src="examples/1.mp4" controls loop muted playsinline preload="metadata"></video>
     </div>
+    <div class="media-block">
+      <span class="label">3D Reconstruction</span>
+      <model-viewer src="examples/1.glb" auto-rotate auto-rotate-delay="0" rotation-per-second="30deg" camera-controls disable-zoom shadow-intensity="1" exposure="1" camera-orbit="0deg 75deg auto"></model-viewer>
+      <a class="download-link" href="examples/1.glb" download>Download mesh (.glb)</a>
+    </div>
   </section>
 
   <section class="card">
@@ -159,6 +183,11 @@
     <div class="media-block">
       <span class="label">Generated Video</span>
       <video src="examples/2.mp4" controls loop muted playsinline preload="metadata"></video>
+    </div>
+    <div class="media-block">
+      <span class="label">3D Reconstruction</span>
+      <model-viewer src="examples/2.glb" auto-rotate auto-rotate-delay="0" rotation-per-second="30deg" camera-controls disable-zoom shadow-intensity="1" exposure="1" camera-orbit="0deg 75deg auto"></model-viewer>
+      <a class="download-link" href="examples/2.glb" download>Download mesh (.glb)</a>
     </div>
   </section>
 
@@ -175,6 +204,11 @@
       <span class="label">Generated Video</span>
       <video src="examples/3.mp4" controls loop muted playsinline preload="metadata"></video>
     </div>
+    <div class="media-block">
+      <span class="label">3D Reconstruction</span>
+      <model-viewer src="examples/3.glb" auto-rotate auto-rotate-delay="0" rotation-per-second="30deg" camera-controls disable-zoom shadow-intensity="1" exposure="1" camera-orbit="0deg 75deg auto"></model-viewer>
+      <a class="download-link" href="examples/3.glb" download>Download mesh (.glb)</a>
+    </div>
   </section>
 
   <section class="card">
@@ -190,12 +224,17 @@
       <span class="label">Generated Video</span>
       <video src="examples/4.mp4" controls loop muted playsinline preload="metadata"></video>
     </div>
+    <div class="media-block">
+      <span class="label">3D Reconstruction</span>
+      <model-viewer src="examples/4.glb" auto-rotate auto-rotate-delay="0" rotation-per-second="30deg" camera-controls disable-zoom shadow-intensity="1" exposure="1" camera-orbit="0deg 75deg auto"></model-viewer>
+      <a class="download-link" href="examples/4.glb" download>Download mesh (.glb)</a>
+    </div>
   </section>
 
 </main>
 
 <footer>
-  Click play on any video to view the generated manipulation sequence.
+  Click play on any video to view the generated manipulation sequence. Drag any 3D reconstruction to orbit it manually.
 </footer>
 
 </body>
